@@ -1,0 +1,802 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chianing.demo.mockdemo.mapper.datasource1.PatientSignDetailMapper">
+    <resultMap id="BaseResultMap" type="com.chianing.demo.mockdemo.model.entity.PatientSignDetail">
+        <id column="pk_id" jdbcType="BIGINT" property="pkId"/>
+        <result column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="patient_identify_card_no" jdbcType="VARCHAR" property="patientIdentifyCardNo"/>
+        <result column="patient_name" jdbcType="VARCHAR" property="patientName"/>
+        <result column="patient_sex" jdbcType="TINYINT" property="patientSex"/>
+        <result column="patient_age" jdbcType="TINYINT" property="patientAge"/>
+        <result column="patient_phone" jdbcType="VARCHAR" property="patientPhone"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="community" jdbcType="VARCHAR" property="community"/>
+        <result column="patient_code" jdbcType="VARCHAR" property="patientCode"/>
+        <result column="insurance_type" jdbcType="TINYINT" property="insuranceType"/>
+        <result column="patient_fee_code" jdbcType="VARCHAR" property="patientFeeCode"/>
+        <result column="doct_no" jdbcType="VARCHAR" property="doctNo"/>
+        <result column="medical_history" jdbcType="VARCHAR" property="medicalHistory"/>
+        <result column="past_history" jdbcType="VARCHAR" property="pastHistory"/>
+        <result column="inspe_result" jdbcType="VARCHAR" property="inspeResult"/>
+        <result column="diagnose" jdbcType="VARCHAR" property="diagnose"/>
+        <result column="treatment" jdbcType="VARCHAR" property="treatment"/>
+        <result column="start_date" jdbcType="TIMESTAMP" property="startDate"/>
+        <result column="end_date" jdbcType="TIMESTAMP" property="endDate"/>
+        <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated"/>
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+        <result column="gmt_deleted" jdbcType="TIMESTAMP" property="gmtDeleted"/>
+        <result column="is_deleted" jdbcType="TINYINT" property="isDeleted"/>
+        <result column="hosp_no" jdbcType="VARCHAR" property="hospNo"/>
+        <result column="hosp_name" jdbcType="VARCHAR" property="hospName"/>
+        <result column="doct_name" jdbcType="VARCHAR" property="doctName"/>
+        <result column="sign_state" jdbcType="TINYINT" property="signState"/>
+        <result column="sign_code" jdbcType="VARCHAR" property="signCode"/>
+        <result column="cancel_reason" jdbcType="VARCHAR" property="cancelReason"/>
+        <result column="agreement_drugstore" jdbcType="VARCHAR" property="agreementDrugstore"/>
+        <result column="medical_treatment_combination_no" jdbcType="VARCHAR" property="medicalTreatmentCombinationNo"/>
+        <result column="signed_type" jdbcType="TINYINT" property="signedType"/>
+        <result column="stop_reason" jdbcType="TINYINT" property="stopReason"/>
+        <result column="hmd_no" jdbcType="VARCHAR" property="hmdNo"/>
+        <result column="hmd_name" jdbcType="VARCHAR" property="hmdName"/>
+        <result column="sign_source" jdbcType="TINYINT" property="signSource"/>
+        <result column="terminate_date" jdbcType="TIMESTAMP" property="terminateDate"/>
+        <result column="sign_date" jdbcType="TIMESTAMP" property="signDate"/>
+        <result column="hosp_level" jdbcType="VARCHAR" property="hospLevel"/>
+        <result column="hosp_type" jdbcType="VARCHAR" property="hospType"/>
+        <result column="cancel_reason_remark" jdbcType="VARCHAR" property="cancelReasonRemark"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        pk_id
+        , id, patient_identify_card_no, patient_name, patient_sex, patient_age, patient_phone,
+    address, community, patient_code, insurance_type, patient_fee_code, doct_no, medical_history, 
+    past_history, inspe_result, diagnose, treatment, start_date, end_date, gmt_created, 
+    gmt_modified, gmt_deleted, is_deleted, hosp_no, hosp_name, doct_name, sign_state, 
+    sign_code, cancel_reason, agreement_drugstore, medical_treatment_combination_no, 
+    signed_type, stop_reason, hmd_no, hmd_name, sign_source, terminate_date, sign_date, 
+    hosp_level, hosp_type, cancel_reason_remark
+    </sql>
+    <select id="selectByExample"
+            parameterType="com.chianing.demo.mockdemo.mapper.datasource1.example.PatientSignDetailExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        'true' as QUERYID,
+        <include refid="Base_Column_List"/>
+        from patient_sign_detail
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from patient_sign_detail
+        where pk_id = #{pkId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from patient_sign_detail
+        where pk_id = #{pkId,jdbcType=BIGINT}
+    </delete>
+    <delete id="deleteByExample"
+            parameterType="com.chianing.demo.mockdemo.mapper.datasource1.example.PatientSignDetailExample">
+        delete from patient_sign_detail
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" keyColumn="pk_id" keyProperty="pkId"
+            parameterType="com.chianing.demo.mockdemo.model.entity.PatientSignDetail" useGeneratedKeys="true">
+        insert into patient_sign_detail (id, patient_identify_card_no, patient_name,
+                                         patient_sex, patient_age, patient_phone,
+                                         address, community, patient_code,
+                                         insurance_type, patient_fee_code, doct_no,
+                                         medical_history, past_history, inspe_result,
+                                         diagnose, treatment, start_date,
+                                         end_date, gmt_created, gmt_modified,
+                                         gmt_deleted, is_deleted, hosp_no,
+                                         hosp_name, doct_name, sign_state,
+                                         sign_code, cancel_reason, agreement_drugstore,
+                                         medical_treatment_combination_no, signed_type,
+                                         stop_reason, hmd_no, hmd_name,
+                                         sign_source, terminate_date, sign_date,
+                                         hosp_level, hosp_type, cancel_reason_remark)
+        values (#{id,jdbcType=VARCHAR}, #{patientIdentifyCardNo,jdbcType=VARCHAR}, #{patientName,jdbcType=VARCHAR},
+                #{patientSex,jdbcType=TINYINT}, #{patientAge,jdbcType=TINYINT}, #{patientPhone,jdbcType=VARCHAR},
+                #{address,jdbcType=VARCHAR}, #{community,jdbcType=VARCHAR}, #{patientCode,jdbcType=VARCHAR},
+                #{insuranceType,jdbcType=TINYINT}, #{patientFeeCode,jdbcType=VARCHAR}, #{doctNo,jdbcType=VARCHAR},
+                #{medicalHistory,jdbcType=VARCHAR}, #{pastHistory,jdbcType=VARCHAR}, #{inspeResult,jdbcType=VARCHAR},
+                #{diagnose,jdbcType=VARCHAR}, #{treatment,jdbcType=VARCHAR}, #{startDate,jdbcType=TIMESTAMP},
+                #{endDate,jdbcType=TIMESTAMP}, #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP},
+                #{gmtDeleted,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT}, #{hospNo,jdbcType=VARCHAR},
+                #{hospName,jdbcType=VARCHAR}, #{doctName,jdbcType=VARCHAR}, #{signState,jdbcType=TINYINT},
+                #{signCode,jdbcType=VARCHAR}, #{cancelReason,jdbcType=VARCHAR}, #{agreementDrugstore,jdbcType=VARCHAR},
+                #{medicalTreatmentCombinationNo,jdbcType=VARCHAR}, #{signedType,jdbcType=TINYINT},
+                #{stopReason,jdbcType=TINYINT}, #{hmdNo,jdbcType=VARCHAR}, #{hmdName,jdbcType=VARCHAR},
+                #{signSource,jdbcType=TINYINT}, #{terminateDate,jdbcType=TIMESTAMP}, #{signDate,jdbcType=TIMESTAMP},
+                #{hospLevel,jdbcType=VARCHAR}, #{hospType,jdbcType=VARCHAR}, #{cancelReasonRemark,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="pk_id" keyProperty="pkId"
+            parameterType="com.chianing.demo.mockdemo.model.entity.PatientSignDetail" useGeneratedKeys="true">
+        insert into patient_sign_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="patientIdentifyCardNo != null">
+                patient_identify_card_no,
+            </if>
+            <if test="patientName != null">
+                patient_name,
+            </if>
+            <if test="patientSex != null">
+                patient_sex,
+            </if>
+            <if test="patientAge != null">
+                patient_age,
+            </if>
+            <if test="patientPhone != null">
+                patient_phone,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="community != null">
+                community,
+            </if>
+            <if test="patientCode != null">
+                patient_code,
+            </if>
+            <if test="insuranceType != null">
+                insurance_type,
+            </if>
+            <if test="patientFeeCode != null">
+                patient_fee_code,
+            </if>
+            <if test="doctNo != null">
+                doct_no,
+            </if>
+            <if test="medicalHistory != null">
+                medical_history,
+            </if>
+            <if test="pastHistory != null">
+                past_history,
+            </if>
+            <if test="inspeResult != null">
+                inspe_result,
+            </if>
+            <if test="diagnose != null">
+                diagnose,
+            </if>
+            <if test="treatment != null">
+                treatment,
+            </if>
+            <if test="startDate != null">
+                start_date,
+            </if>
+            <if test="endDate != null">
+                end_date,
+            </if>
+            <if test="gmtCreated != null">
+                gmt_created,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+            <if test="gmtDeleted != null">
+                gmt_deleted,
+            </if>
+            <if test="isDeleted != null">
+                is_deleted,
+            </if>
+            <if test="hospNo != null">
+                hosp_no,
+            </if>
+            <if test="hospName != null">
+                hosp_name,
+            </if>
+            <if test="doctName != null">
+                doct_name,
+            </if>
+            <if test="signState != null">
+                sign_state,
+            </if>
+            <if test="signCode != null">
+                sign_code,
+            </if>
+            <if test="cancelReason != null">
+                cancel_reason,
+            </if>
+            <if test="agreementDrugstore != null">
+                agreement_drugstore,
+            </if>
+            <if test="medicalTreatmentCombinationNo != null">
+                medical_treatment_combination_no,
+            </if>
+            <if test="signedType != null">
+                signed_type,
+            </if>
+            <if test="stopReason != null">
+                stop_reason,
+            </if>
+            <if test="hmdNo != null">
+                hmd_no,
+            </if>
+            <if test="hmdName != null">
+                hmd_name,
+            </if>
+            <if test="signSource != null">
+                sign_source,
+            </if>
+            <if test="terminateDate != null">
+                terminate_date,
+            </if>
+            <if test="signDate != null">
+                sign_date,
+            </if>
+            <if test="hospLevel != null">
+                hosp_level,
+            </if>
+            <if test="hospType != null">
+                hosp_type,
+            </if>
+            <if test="cancelReasonRemark != null">
+                cancel_reason_remark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="patientIdentifyCardNo != null">
+                #{patientIdentifyCardNo,jdbcType=VARCHAR},
+            </if>
+            <if test="patientName != null">
+                #{patientName,jdbcType=VARCHAR},
+            </if>
+            <if test="patientSex != null">
+                #{patientSex,jdbcType=TINYINT},
+            </if>
+            <if test="patientAge != null">
+                #{patientAge,jdbcType=TINYINT},
+            </if>
+            <if test="patientPhone != null">
+                #{patientPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="community != null">
+                #{community,jdbcType=VARCHAR},
+            </if>
+            <if test="patientCode != null">
+                #{patientCode,jdbcType=VARCHAR},
+            </if>
+            <if test="insuranceType != null">
+                #{insuranceType,jdbcType=TINYINT},
+            </if>
+            <if test="patientFeeCode != null">
+                #{patientFeeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="doctNo != null">
+                #{doctNo,jdbcType=VARCHAR},
+            </if>
+            <if test="medicalHistory != null">
+                #{medicalHistory,jdbcType=VARCHAR},
+            </if>
+            <if test="pastHistory != null">
+                #{pastHistory,jdbcType=VARCHAR},
+            </if>
+            <if test="inspeResult != null">
+                #{inspeResult,jdbcType=VARCHAR},
+            </if>
+            <if test="diagnose != null">
+                #{diagnose,jdbcType=VARCHAR},
+            </if>
+            <if test="treatment != null">
+                #{treatment,jdbcType=VARCHAR},
+            </if>
+            <if test="startDate != null">
+                #{startDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endDate != null">
+                #{endDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtCreated != null">
+                #{gmtCreated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtDeleted != null">
+                #{gmtDeleted,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isDeleted != null">
+                #{isDeleted,jdbcType=TINYINT},
+            </if>
+            <if test="hospNo != null">
+                #{hospNo,jdbcType=VARCHAR},
+            </if>
+            <if test="hospName != null">
+                #{hospName,jdbcType=VARCHAR},
+            </if>
+            <if test="doctName != null">
+                #{doctName,jdbcType=VARCHAR},
+            </if>
+            <if test="signState != null">
+                #{signState,jdbcType=TINYINT},
+            </if>
+            <if test="signCode != null">
+                #{signCode,jdbcType=VARCHAR},
+            </if>
+            <if test="cancelReason != null">
+                #{cancelReason,jdbcType=VARCHAR},
+            </if>
+            <if test="agreementDrugstore != null">
+                #{agreementDrugstore,jdbcType=VARCHAR},
+            </if>
+            <if test="medicalTreatmentCombinationNo != null">
+                #{medicalTreatmentCombinationNo,jdbcType=VARCHAR},
+            </if>
+            <if test="signedType != null">
+                #{signedType,jdbcType=TINYINT},
+            </if>
+            <if test="stopReason != null">
+                #{stopReason,jdbcType=TINYINT},
+            </if>
+            <if test="hmdNo != null">
+                #{hmdNo,jdbcType=VARCHAR},
+            </if>
+            <if test="hmdName != null">
+                #{hmdName,jdbcType=VARCHAR},
+            </if>
+            <if test="signSource != null">
+                #{signSource,jdbcType=TINYINT},
+            </if>
+            <if test="terminateDate != null">
+                #{terminateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="signDate != null">
+                #{signDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="hospLevel != null">
+                #{hospLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="hospType != null">
+                #{hospType,jdbcType=VARCHAR},
+            </if>
+            <if test="cancelReasonRemark != null">
+                #{cancelReasonRemark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample"
+            parameterType="com.chianing.demo.mockdemo.mapper.datasource1.example.PatientSignDetailExample"
+            resultType="java.lang.Long">
+        select count(*) from patient_sign_detail
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update patient_sign_detail
+        <set>
+            <if test="row.pkId != null">
+                pk_id = #{row.pkId,jdbcType=BIGINT},
+            </if>
+            <if test="row.id != null">
+                id = #{row.id,jdbcType=VARCHAR},
+            </if>
+            <if test="row.patientIdentifyCardNo != null">
+                patient_identify_card_no = #{row.patientIdentifyCardNo,jdbcType=VARCHAR},
+            </if>
+            <if test="row.patientName != null">
+                patient_name = #{row.patientName,jdbcType=VARCHAR},
+            </if>
+            <if test="row.patientSex != null">
+                patient_sex = #{row.patientSex,jdbcType=TINYINT},
+            </if>
+            <if test="row.patientAge != null">
+                patient_age = #{row.patientAge,jdbcType=TINYINT},
+            </if>
+            <if test="row.patientPhone != null">
+                patient_phone = #{row.patientPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="row.address != null">
+                address = #{row.address,jdbcType=VARCHAR},
+            </if>
+            <if test="row.community != null">
+                community = #{row.community,jdbcType=VARCHAR},
+            </if>
+            <if test="row.patientCode != null">
+                patient_code = #{row.patientCode,jdbcType=VARCHAR},
+            </if>
+            <if test="row.insuranceType != null">
+                insurance_type = #{row.insuranceType,jdbcType=TINYINT},
+            </if>
+            <if test="row.patientFeeCode != null">
+                patient_fee_code = #{row.patientFeeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="row.doctNo != null">
+                doct_no = #{row.doctNo,jdbcType=VARCHAR},
+            </if>
+            <if test="row.medicalHistory != null">
+                medical_history = #{row.medicalHistory,jdbcType=VARCHAR},
+            </if>
+            <if test="row.pastHistory != null">
+                past_history = #{row.pastHistory,jdbcType=VARCHAR},
+            </if>
+            <if test="row.inspeResult != null">
+                inspe_result = #{row.inspeResult,jdbcType=VARCHAR},
+            </if>
+            <if test="row.diagnose != null">
+                diagnose = #{row.diagnose,jdbcType=VARCHAR},
+            </if>
+            <if test="row.treatment != null">
+                treatment = #{row.treatment,jdbcType=VARCHAR},
+            </if>
+            <if test="row.startDate != null">
+                start_date = #{row.startDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="row.endDate != null">
+                end_date = #{row.endDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="row.gmtCreated != null">
+                gmt_created = #{row.gmtCreated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="row.gmtModified != null">
+                gmt_modified = #{row.gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="row.gmtDeleted != null">
+                gmt_deleted = #{row.gmtDeleted,jdbcType=TIMESTAMP},
+            </if>
+            <if test="row.isDeleted != null">
+                is_deleted = #{row.isDeleted,jdbcType=TINYINT},
+            </if>
+            <if test="row.hospNo != null">
+                hosp_no = #{row.hospNo,jdbcType=VARCHAR},
+            </if>
+            <if test="row.hospName != null">
+                hosp_name = #{row.hospName,jdbcType=VARCHAR},
+            </if>
+            <if test="row.doctName != null">
+                doct_name = #{row.doctName,jdbcType=VARCHAR},
+            </if>
+            <if test="row.signState != null">
+                sign_state = #{row.signState,jdbcType=TINYINT},
+            </if>
+            <if test="row.signCode != null">
+                sign_code = #{row.signCode,jdbcType=VARCHAR},
+            </if>
+            <if test="row.cancelReason != null">
+                cancel_reason = #{row.cancelReason,jdbcType=VARCHAR},
+            </if>
+            <if test="row.agreementDrugstore != null">
+                agreement_drugstore = #{row.agreementDrugstore,jdbcType=VARCHAR},
+            </if>
+            <if test="row.medicalTreatmentCombinationNo != null">
+                medical_treatment_combination_no = #{row.medicalTreatmentCombinationNo,jdbcType=VARCHAR},
+            </if>
+            <if test="row.signedType != null">
+                signed_type = #{row.signedType,jdbcType=TINYINT},
+            </if>
+            <if test="row.stopReason != null">
+                stop_reason = #{row.stopReason,jdbcType=TINYINT},
+            </if>
+            <if test="row.hmdNo != null">
+                hmd_no = #{row.hmdNo,jdbcType=VARCHAR},
+            </if>
+            <if test="row.hmdName != null">
+                hmd_name = #{row.hmdName,jdbcType=VARCHAR},
+            </if>
+            <if test="row.signSource != null">
+                sign_source = #{row.signSource,jdbcType=TINYINT},
+            </if>
+            <if test="row.terminateDate != null">
+                terminate_date = #{row.terminateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="row.signDate != null">
+                sign_date = #{row.signDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="row.hospLevel != null">
+                hosp_level = #{row.hospLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="row.hospType != null">
+                hosp_type = #{row.hospType,jdbcType=VARCHAR},
+            </if>
+            <if test="row.cancelReasonRemark != null">
+                cancel_reason_remark = #{row.cancelReasonRemark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="example != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update patient_sign_detail
+        set pk_id = #{row.pkId,jdbcType=BIGINT},
+        id = #{row.id,jdbcType=VARCHAR},
+        patient_identify_card_no = #{row.patientIdentifyCardNo,jdbcType=VARCHAR},
+        patient_name = #{row.patientName,jdbcType=VARCHAR},
+        patient_sex = #{row.patientSex,jdbcType=TINYINT},
+        patient_age = #{row.patientAge,jdbcType=TINYINT},
+        patient_phone = #{row.patientPhone,jdbcType=VARCHAR},
+        address = #{row.address,jdbcType=VARCHAR},
+        community = #{row.community,jdbcType=VARCHAR},
+        patient_code = #{row.patientCode,jdbcType=VARCHAR},
+        insurance_type = #{row.insuranceType,jdbcType=TINYINT},
+        patient_fee_code = #{row.patientFeeCode,jdbcType=VARCHAR},
+        doct_no = #{row.doctNo,jdbcType=VARCHAR},
+        medical_history = #{row.medicalHistory,jdbcType=VARCHAR},
+        past_history = #{row.pastHistory,jdbcType=VARCHAR},
+        inspe_result = #{row.inspeResult,jdbcType=VARCHAR},
+        diagnose = #{row.diagnose,jdbcType=VARCHAR},
+        treatment = #{row.treatment,jdbcType=VARCHAR},
+        start_date = #{row.startDate,jdbcType=TIMESTAMP},
+        end_date = #{row.endDate,jdbcType=TIMESTAMP},
+        gmt_created = #{row.gmtCreated,jdbcType=TIMESTAMP},
+        gmt_modified = #{row.gmtModified,jdbcType=TIMESTAMP},
+        gmt_deleted = #{row.gmtDeleted,jdbcType=TIMESTAMP},
+        is_deleted = #{row.isDeleted,jdbcType=TINYINT},
+        hosp_no = #{row.hospNo,jdbcType=VARCHAR},
+        hosp_name = #{row.hospName,jdbcType=VARCHAR},
+        doct_name = #{row.doctName,jdbcType=VARCHAR},
+        sign_state = #{row.signState,jdbcType=TINYINT},
+        sign_code = #{row.signCode,jdbcType=VARCHAR},
+        cancel_reason = #{row.cancelReason,jdbcType=VARCHAR},
+        agreement_drugstore = #{row.agreementDrugstore,jdbcType=VARCHAR},
+        medical_treatment_combination_no = #{row.medicalTreatmentCombinationNo,jdbcType=VARCHAR},
+        signed_type = #{row.signedType,jdbcType=TINYINT},
+        stop_reason = #{row.stopReason,jdbcType=TINYINT},
+        hmd_no = #{row.hmdNo,jdbcType=VARCHAR},
+        hmd_name = #{row.hmdName,jdbcType=VARCHAR},
+        sign_source = #{row.signSource,jdbcType=TINYINT},
+        terminate_date = #{row.terminateDate,jdbcType=TIMESTAMP},
+        sign_date = #{row.signDate,jdbcType=TIMESTAMP},
+        hosp_level = #{row.hospLevel,jdbcType=VARCHAR},
+        hosp_type = #{row.hospType,jdbcType=VARCHAR},
+        cancel_reason_remark = #{row.cancelReasonRemark,jdbcType=VARCHAR}
+        <if test="example != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.chianing.demo.mockdemo.model.entity.PatientSignDetail">
+        update patient_sign_detail
+        <set>
+            <if test="id != null">
+                id = #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="patientIdentifyCardNo != null">
+                patient_identify_card_no = #{patientIdentifyCardNo,jdbcType=VARCHAR},
+            </if>
+            <if test="patientName != null">
+                patient_name = #{patientName,jdbcType=VARCHAR},
+            </if>
+            <if test="patientSex != null">
+                patient_sex = #{patientSex,jdbcType=TINYINT},
+            </if>
+            <if test="patientAge != null">
+                patient_age = #{patientAge,jdbcType=TINYINT},
+            </if>
+            <if test="patientPhone != null">
+                patient_phone = #{patientPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="community != null">
+                community = #{community,jdbcType=VARCHAR},
+            </if>
+            <if test="patientCode != null">
+                patient_code = #{patientCode,jdbcType=VARCHAR},
+            </if>
+            <if test="insuranceType != null">
+                insurance_type = #{insuranceType,jdbcType=TINYINT},
+            </if>
+            <if test="patientFeeCode != null">
+                patient_fee_code = #{patientFeeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="doctNo != null">
+                doct_no = #{doctNo,jdbcType=VARCHAR},
+            </if>
+            <if test="medicalHistory != null">
+                medical_history = #{medicalHistory,jdbcType=VARCHAR},
+            </if>
+            <if test="pastHistory != null">
+                past_history = #{pastHistory,jdbcType=VARCHAR},
+            </if>
+            <if test="inspeResult != null">
+                inspe_result = #{inspeResult,jdbcType=VARCHAR},
+            </if>
+            <if test="diagnose != null">
+                diagnose = #{diagnose,jdbcType=VARCHAR},
+            </if>
+            <if test="treatment != null">
+                treatment = #{treatment,jdbcType=VARCHAR},
+            </if>
+            <if test="startDate != null">
+                start_date = #{startDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endDate != null">
+                end_date = #{endDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtCreated != null">
+                gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtDeleted != null">
+                gmt_deleted = #{gmtDeleted,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isDeleted != null">
+                is_deleted = #{isDeleted,jdbcType=TINYINT},
+            </if>
+            <if test="hospNo != null">
+                hosp_no = #{hospNo,jdbcType=VARCHAR},
+            </if>
+            <if test="hospName != null">
+                hosp_name = #{hospName,jdbcType=VARCHAR},
+            </if>
+            <if test="doctName != null">
+                doct_name = #{doctName,jdbcType=VARCHAR},
+            </if>
+            <if test="signState != null">
+                sign_state = #{signState,jdbcType=TINYINT},
+            </if>
+            <if test="signCode != null">
+                sign_code = #{signCode,jdbcType=VARCHAR},
+            </if>
+            <if test="cancelReason != null">
+                cancel_reason = #{cancelReason,jdbcType=VARCHAR},
+            </if>
+            <if test="agreementDrugstore != null">
+                agreement_drugstore = #{agreementDrugstore,jdbcType=VARCHAR},
+            </if>
+            <if test="medicalTreatmentCombinationNo != null">
+                medical_treatment_combination_no = #{medicalTreatmentCombinationNo,jdbcType=VARCHAR},
+            </if>
+            <if test="signedType != null">
+                signed_type = #{signedType,jdbcType=TINYINT},
+            </if>
+            <if test="stopReason != null">
+                stop_reason = #{stopReason,jdbcType=TINYINT},
+            </if>
+            <if test="hmdNo != null">
+                hmd_no = #{hmdNo,jdbcType=VARCHAR},
+            </if>
+            <if test="hmdName != null">
+                hmd_name = #{hmdName,jdbcType=VARCHAR},
+            </if>
+            <if test="signSource != null">
+                sign_source = #{signSource,jdbcType=TINYINT},
+            </if>
+            <if test="terminateDate != null">
+                terminate_date = #{terminateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="signDate != null">
+                sign_date = #{signDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="hospLevel != null">
+                hosp_level = #{hospLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="hospType != null">
+                hosp_type = #{hospType,jdbcType=VARCHAR},
+            </if>
+            <if test="cancelReasonRemark != null">
+                cancel_reason_remark = #{cancelReasonRemark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where pk_id = #{pkId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.chianing.demo.mockdemo.model.entity.PatientSignDetail">
+        update patient_sign_detail
+        set id                               = #{id,jdbcType=VARCHAR},
+            patient_identify_card_no         = #{patientIdentifyCardNo,jdbcType=VARCHAR},
+            patient_name                     = #{patientName,jdbcType=VARCHAR},
+            patient_sex                      = #{patientSex,jdbcType=TINYINT},
+            patient_age                      = #{patientAge,jdbcType=TINYINT},
+            patient_phone                    = #{patientPhone,jdbcType=VARCHAR},
+            address                          = #{address,jdbcType=VARCHAR},
+            community                        = #{community,jdbcType=VARCHAR},
+            patient_code                     = #{patientCode,jdbcType=VARCHAR},
+            insurance_type                   = #{insuranceType,jdbcType=TINYINT},
+            patient_fee_code                 = #{patientFeeCode,jdbcType=VARCHAR},
+            doct_no                          = #{doctNo,jdbcType=VARCHAR},
+            medical_history                  = #{medicalHistory,jdbcType=VARCHAR},
+            past_history                     = #{pastHistory,jdbcType=VARCHAR},
+            inspe_result                     = #{inspeResult,jdbcType=VARCHAR},
+            diagnose                         = #{diagnose,jdbcType=VARCHAR},
+            treatment                        = #{treatment,jdbcType=VARCHAR},
+            start_date                       = #{startDate,jdbcType=TIMESTAMP},
+            end_date                         = #{endDate,jdbcType=TIMESTAMP},
+            gmt_created                      = #{gmtCreated,jdbcType=TIMESTAMP},
+            gmt_modified                     = #{gmtModified,jdbcType=TIMESTAMP},
+            gmt_deleted                      = #{gmtDeleted,jdbcType=TIMESTAMP},
+            is_deleted                       = #{isDeleted,jdbcType=TINYINT},
+            hosp_no                          = #{hospNo,jdbcType=VARCHAR},
+            hosp_name                        = #{hospName,jdbcType=VARCHAR},
+            doct_name                        = #{doctName,jdbcType=VARCHAR},
+            sign_state                       = #{signState,jdbcType=TINYINT},
+            sign_code                        = #{signCode,jdbcType=VARCHAR},
+            cancel_reason                    = #{cancelReason,jdbcType=VARCHAR},
+            agreement_drugstore              = #{agreementDrugstore,jdbcType=VARCHAR},
+            medical_treatment_combination_no = #{medicalTreatmentCombinationNo,jdbcType=VARCHAR},
+            signed_type                      = #{signedType,jdbcType=TINYINT},
+            stop_reason                      = #{stopReason,jdbcType=TINYINT},
+            hmd_no                           = #{hmdNo,jdbcType=VARCHAR},
+            hmd_name                         = #{hmdName,jdbcType=VARCHAR},
+            sign_source                      = #{signSource,jdbcType=TINYINT},
+            terminate_date                   = #{terminateDate,jdbcType=TIMESTAMP},
+            sign_date                        = #{signDate,jdbcType=TIMESTAMP},
+            hosp_level                       = #{hospLevel,jdbcType=VARCHAR},
+            hosp_type                        = #{hospType,jdbcType=VARCHAR},
+            cancel_reason_remark             = #{cancelReasonRemark,jdbcType=VARCHAR}
+        where pk_id = #{pkId,jdbcType=BIGINT}
+    </update>
+</mapper>
